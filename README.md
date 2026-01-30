@@ -82,6 +82,18 @@ curl http://localhost:11435/speakers
 | `language` | string | "English" | Language |
 | `instruct` | string | "" | Style instruction (e.g., "Speak with enthusiasm") |
 
+## Uninstall
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/larrywcl/tts-server/main/uninstall.sh | bash
+```
+
+This removes:
+- `~/.tts-server/` directory
+- Launch agent (if installed)
+- Cached model files
+- Temp files
+
 ## Requirements
 
 - macOS (Apple Silicon recommended)
