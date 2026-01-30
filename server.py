@@ -115,9 +115,11 @@ async def generate_batch(req: BatchRequest):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--host", default="0.0.0.0")
+    # Default to VM bridge interface (192.168.64.1) - only accessible from VMs
+    parser.add_argument("--host", default="192.168.64.1")
     parser.add_argument("--port", type=int, default=11435)
     args = parser.parse_args()
     
     print(f"Starting TTS server on {args.host}:{args.port}")
+    print(f"  (Use --host 0.0.0.0 to listen on all interfaces)")
     uvicorn.run(app, host=args.host, port=args.port)
