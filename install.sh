@@ -39,12 +39,14 @@ rm -rf "$TTS_DIR"
 mkdir -p "$TTS_DIR"
 cd "$TTS_DIR"
 
-# Clone repo (or copy files if running locally)
-if [[ -d "/tmp/tts-server-files" ]]; then
-    cp -r /tmp/tts-server-files/* .
-else
-    echo "📥 Downloading server files..."
-    git clone --depth 1 "$REPO_URL" .
+# Download server.py directly (simpler than cloning)
+echo "📥 Downloading server files..."
+curl -fsSL "https://raw.githubusercontent.com/larrywcl/tts-server/main/server.py" -o server.py
+chmod +x server.py
+
+if [[ ! -f server.py ]]; then
+    echo "❌ Failed to download server.py"
+    exit 1
 fi
 
 # Create virtual environment
